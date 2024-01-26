@@ -1,5 +1,5 @@
 const express = require('express');
-const mongoose = require('mongoose');
+const { connectToMongoDB, closeMongoDBConnection } = require('./mongodb');
 
 const app = express();
 const port = 8080;
@@ -8,14 +8,7 @@ const port = 8080;
 app.use(express.static('public'));
 
 // Connect to MongoDB
-mongoose.connect('mongodb://localhost/grooming-shop', { useNewUrlParser: true, useUnifiedTopology: true });
-
-// MongoDB connection event handlers
-const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
-db.once('open', () => {
-  console.log('Connected to MongoDB');
-});
+connectToMongoDB();
 
 // Define route for the home page
 app.get('/', (req, res) => {
@@ -35,8 +28,13 @@ app.get('/contact', (req, res) => {
   res.send('Contact Page');
 });
 
+// Close MongoDB connection when the app is terminated
+process.on('SIGINT', async () => {
+  await closeMongoDBConnection();
+  process.exit();
+});
+
 // Start the server
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
-
