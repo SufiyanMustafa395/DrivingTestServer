@@ -3,3 +3,5 @@ to start server:
 - browse to folder in VSCode terminal
 - npm install
 - npm start or npm run dev
+  
+http://localhost:8080/
