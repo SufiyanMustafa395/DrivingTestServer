@@ -2,6 +2,7 @@
 
 const express = require('express');
 const { connectToMongoDB, closeMongoDBConnection } = require('./mongodb');
+const routes = require('./routes');
 
 const app = express();
 const port = 8080;
@@ -12,23 +13,8 @@ app.use(express.static('public'));
 // Connect to MongoDB Atlas
 connectToMongoDB();
 
-// Define route for the home page
-app.get('/', (req, res) => {
-  // Logic to fetch data for the home page
-  res.send('Home Page');
-});
-
-// Define route for services
-app.get('/services', (req, res) => {
-  // Logic to fetch data for services
-  res.send('Services Page');
-});
-
-// Define route for contact information
-app.get('/contact', (req, res) => {
-  // Logic to fetch contact information
-  res.send('Contact Page');
-});
+// Use the routes defined in routes.js
+app.use('/', routes);
 
 // Close MongoDB Atlas connection when the app is terminated
 process.on('SIGINT', async () => {

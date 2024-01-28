@@ -1,6 +1,14 @@
 // mongodb.js
-
 const mongoose = require('mongoose');
+
+// Import your models
+const User = require('./models/user');
+const Customer = require('./models/customer');
+const Appointment = require('./models/appointment');
+const Service = require('./models/service');
+const Dog = require('./models/dog');
+const Groomer = require('./models/groomer');
+const Feedback = require('./models/feedback');
 
 const connectToMongoDB = async () => {
   try {
@@ -18,4 +26,5 @@ async function closeMongoDBConnection() {
   console.log('Disconnected from MongoDB Atlas');
 }
 
-module.exports = { connectToMongoDB, closeMongoDBConnection };
+// Export your models for use in other files
+module.exports = { connectToMongoDB, closeMongoDBConnection, User, Customer, Appointment, Service, Dog, Groomer, Feedback };
