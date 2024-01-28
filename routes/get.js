@@ -1,8 +1,6 @@
-// routes.js
-
 const express = require('express');
 const router = express.Router();
-const { User, Customer, Service } = require('./mongodb');
+const { User, Customer, Service } = require('../mongodb');
 
 // Define route for the home page
 router.get('/', async (req, res) => {
