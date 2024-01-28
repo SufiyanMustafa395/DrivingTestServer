@@ -1,3 +1,5 @@
+// server.js
+
 const express = require('express');
 const { connectToMongoDB, closeMongoDBConnection } = require('./mongodb');
 
@@ -7,7 +9,7 @@ const port = 8080;
 // Serve static files from the 'public' directory
 app.use(express.static('public'));
 
-// Connect to MongoDB
+// Connect to MongoDB Atlas
 connectToMongoDB();
 
 // Define route for the home page
@@ -28,7 +30,7 @@ app.get('/contact', (req, res) => {
   res.send('Contact Page');
 });
 
-// Close MongoDB connection when the app is terminated
+// Close MongoDB Atlas connection when the app is terminated
 process.on('SIGINT', async () => {
   await closeMongoDBConnection();
   process.exit();

@@ -1,40 +1,21 @@
-const mongoose = require('mongoose');
-const { MongoMemoryServer } = require('mongodb-memory-server');
+// mongodb.js
 
-let mongod;
+const mongoose = require('mongoose');
 
 const connectToMongoDB = async () => {
   try {
-    mongod = await MongoMemoryServer.create();
-    const uri = await mongod.getUri();
-    await mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-    console.log('Connected to MongoDB');
+    const atlasConnectionString = 'mongodb+srv://groom:groom1234@cluster0.s32mnvh.mongodb.net/groomingApp?retryWrites=true&w=majority';
+    await mongoose.connect(atlasConnectionString, { useNewUrlParser: true, useUnifiedTopology: true });
+    console.log('Connected to MongoDB Atlas');
   } catch (error) {
-    console.error('MongoDB connection error:', error);
+    console.error('MongoDB Atlas connection error:', error);
   }
 };
 
 async function closeMongoDBConnection() {
-  console.log('Closing MongoDB connection...');
+  console.log('Closing MongoDB Atlas connection...');
   await mongoose.disconnect();
-  console.log('Disconnected from MongoDB');
+  console.log('Disconnected from MongoDB Atlas');
 }
-
-// Explicit cleanup function
-async function cleanup() {
-  if (mongod) {
-    console.log('Stopping MongoDB server...');
-    await mongod.stop();
-    console.log('MongoDB server stopped');
-  }
-
-  console.log('Cleanup completed');
-}
-
-// Handle cleanup on process exit
-process.on('beforeExit', async () => {
-  await closeMongoDBConnection();
-  await cleanup();
-});
 
 module.exports = { connectToMongoDB, closeMongoDBConnection };
