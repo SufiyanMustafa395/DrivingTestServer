@@ -1,6 +1,8 @@
 // server.js
 
 const express = require('express');
+const cors = require('cors'); // Import cors
+const bodyParser = require('body-parser'); // Add this line
 const { connectToMongoDB, closeMongoDBConnection } = require('./mongodb');
 const routes = require('./routes/routes');
 const authRoutes = require('./routes/authRoutes');  // Import authRoutes
@@ -8,8 +10,14 @@ const authRoutes = require('./routes/authRoutes');  // Import authRoutes
 const app = express();
 const port = 8080;
 
+// Enable CORS
+app.use(cors());
+
 // Serve static files from the 'public' directory
 app.use(express.static('public'));
+
+// Add this line to parse request bodies as JSON
+app.use(bodyParser.json());
 
 // Connect to MongoDB Atlas
 connectToMongoDB();
@@ -30,3 +38,4 @@ process.on('SIGINT', async () => {
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
+
