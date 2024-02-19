@@ -4,6 +4,7 @@ const express = require('express');
 const authRoutes = require('./authRoutes');
 const appointmentRoutes = require('./appointmentRoutes');
 const customerRoutes = require('./customerRoutes');
+const aboutRoute = require('./aboutRoute'); // Import the aboutRoute module
 
 const router = express.Router();
 
@@ -16,6 +17,8 @@ router.get('/', (req, res) => {
 router.use('/auth', authRoutes);
 router.use('/appointments', appointmentRoutes);
 router.use('/customers', customerRoutes);
+// Include the about route
+router.use('/about', aboutRoute);
 
 module.exports = router;
 
