@@ -6,6 +6,7 @@ const appointmentRoutes = require('./appointmentRoutes');
 const customerRoutes = require('./customerRoutes');
 const aboutRoute = require('./aboutRoute'); // Import the aboutRoute module
 const servicesRoute = require('./servicesRoute'); // Import the servicesRoute module
+const contactsRoute = require('./contactsRoute'); // Import the contactsRoute module
 
 
 const router = express.Router();
@@ -22,6 +23,8 @@ router.use('/customers', customerRoutes);
 // Include the about route
 router.use('/about', aboutRoute);
 router.use('/services', servicesRoute); // Include the services route
+// Include the contacts route
+router.use('/contacts', contactsRoute);
 
 module.exports = router;
 
