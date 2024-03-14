@@ -1,4 +1,4 @@
-//routes.js
+//routes/routes.js
 
 const express = require('express');
 const authRoutes = require('./authRoutes');
