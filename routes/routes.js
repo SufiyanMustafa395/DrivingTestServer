@@ -8,6 +8,7 @@ const aboutRoute = require('./aboutRoute'); // Import the aboutRoute module
 const servicesRoute = require('./servicesRoute'); // Import the servicesRoute module
 const contactsRoute = require('./contactsRoute'); // Import the contactsRoute module
 const homeRoute = require('./homeRoute'); // Import the homeRoute module
+const passwordRoute = require('./passwordRoute'); // Import the homeRoute module
 
 
 const router = express.Router();
@@ -28,6 +29,8 @@ router.use('/about', aboutRoute);
 router.use('/services', servicesRoute); // Include the services route
 // Include the contacts route
 router.use('/contacts', contactsRoute);
+ // Include the password route
+router.use('/password', passwordRoute);
 // Include the home route
 router.use('/', homeRoute);
 

@@ -1,11 +1,11 @@
-// server.js
-
+//server.js
 const express = require('express');
-const cors = require('cors'); // Import cors
-const bodyParser = require('body-parser'); // Add this line
+const cors = require('cors');
+const bodyParser = require('body-parser');
 const { connectToMongoDB, closeMongoDBConnection } = require('./mongodb');
 const routes = require('./routes/routes');
-const authRoutes = require('./routes/authRoutes');  // Import authRoutes
+const authRoutes = require('./routes/authRoutes');
+const passwordRoute = require('./routes/passwordRoute');
 
 const app = express();
 const port = 8080;
@@ -16,8 +16,14 @@ app.use(cors());
 // Serve static files from the 'public' directory
 app.use(express.static('public'));
 
-// Add this line to parse request bodies as JSON
+// Parse request bodies as JSON
 app.use(bodyParser.json());
+
+// Middleware function to log incoming requests
+app.use((req, res, next) => {
+  console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
+  next();
+});
 
 // Connect to MongoDB Atlas
 connectToMongoDB();
@@ -27,6 +33,9 @@ app.use('/', routes);
 
 // Use the auth routes defined in authRoutes.js
 app.use('/auth', authRoutes);
+
+// Use the password routes defined in passwordRoute.js
+app.use('/password', passwordRoute);
 
 // Close MongoDB Atlas connection when the app is terminated
 process.on('SIGINT', async () => {
@@ -38,4 +47,3 @@ process.on('SIGINT', async () => {
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
-

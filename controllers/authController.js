@@ -80,9 +80,35 @@ const checkAuth = async (req, res) => {
   }
 };
 
+// Function to handle password change
+const changePassword = async (email, newPassword) => {
+  try {
+    console.log('Attempting to change password:', { email });
+
+    // Check if the user exists
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      return { success: false, message: 'User not found' };
+    }
+
+    // Hash the new password
+    const hashedPassword = await bcrypt.hash(newPassword, 10); // Hash the password
+
+    // Update the user's password
+    await User.updateOne({ email }, { password: hashedPassword }); // Update the password in the database
+
+    return { success: true, message: 'Password changed successfully' };
+  } catch (error) {
+    console.error('Error changing password:', error);
+    return { success: false, message: 'Internal Server Error' };
+  }
+};
+
 module.exports = {
   registerUser,
   loginUser,
   checkAuth,
+  changePassword, // Add the changePassword function to the exported module
   // ... other exported functions
 };
