@@ -102,8 +102,38 @@ const changePassword = async (email, newPassword) => {
   }
 };
 
+// Function to handle user login
+const loginUser = async (email, password) => {
+  try {
+    console.log('Attempting to log in user:', { email, password });
+
+    // Check if the user exists
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      return { success: false, message: 'Email not found' };
+    }
+
+    // Check if the password is correct
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+
+    if (!isPasswordValid) {
+      return { success: false, message: 'Invalid password' };
+    }
+
+    // Generate a JWT token
+    const token = jwt.sign({ userId: user._id, email: user.email }, secretKey, { expiresIn: '1h' });
+
+    return { success: true, user, token };
+  } catch (error) {
+    console.error('Error logging in user:', error);
+    return { success: false, message: 'Internal Server Error' };
+  }
+};
+
 module.exports = {
   registerUser,
+  loginUser,
   updateDogProfile,
   checkAuth,
   changePassword, // Add the changePassword function to the exported module
