@@ -8,22 +8,15 @@ const aboutRoute = require('./aboutRoute'); // Import the aboutRoute module
 const servicesRoute = require('./servicesRoute'); // Import the servicesRoute module
 const contactsRoute = require('./contactsRoute'); // Import the contactsRoute module
 const homeRoute = require('./homeRoute'); // Import the homeRoute module
+const dogProfileRoutes = require('./dogProfileRoutes'); // Import the dogProfileRoutes module
 const passwordRoute = require('./passwordRoute'); // Import the homeRoute module
-
-
 const router = express.Router();
-
-/*
-// Define a route handler for the root path
-router.get('/', (req, res) => {
-  res.send('Welcome to the root path!');
-});
-*/
 
 // Delegate specific functionalities to separate route files
 router.use('/auth', authRoutes);
 router.use('/appointments', appointmentRoutes);
 router.use('/customers', customerRoutes);
+router.use('/dog-profile', dogProfileRoutes); 
 // Include the about route
 router.use('/about', aboutRoute);
 router.use('/services', servicesRoute); // Include the services route
