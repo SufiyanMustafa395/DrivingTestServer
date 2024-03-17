@@ -45,9 +45,9 @@ router.post('/', async (req, res) => {
 router.put('/:id', async (req, res) => {
   try {
     // Check if the authenticated user is an admin
-    if (!isAdmin(req)) {
+    /*if (!isAdmin(req)) {
       return res.status(403).json({ msg: 'Only admin can update services' });
-    }
+    }*/
 
     const { id } = req.params;
     const { title, description, price } = req.body;
@@ -61,5 +61,26 @@ router.put('/:id', async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
+
+// DELETE delete an existing service
+router.delete('/:id', async (req, res) => {
+  try {
+    // Check if the authenticated user is an admin
+    /*if (!isAdmin(req)) {
+      return res.status(403).json({ msg: 'Only admin can delete services' });
+    }*/
+
+    const { id } = req.params;
+    const deletedService = await Service.findByIdAndDelete(id);
+    if (!deletedService) {
+      return res.status(404).json({ error: 'Service not found' });
+    }
+    res.json({ message: 'Service deleted successfully' });
+  } catch (error) {
+    console.error('Error deleting service:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
 
 module.exports = router;
