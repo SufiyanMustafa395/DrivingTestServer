@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-// authMiddleware.js
-=======
 // middleware/authMiddleware.js
->>>>>>> 8f90d3e8a241a764305db79c4bcdb84a70c8b8a6
 const jwt = require("jsonwebtoken");
 
 // Your secret key for signing and verifying JWT

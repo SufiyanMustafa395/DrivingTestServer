@@ -1,23 +1,13 @@
 // authController.js
-<<<<<<< HEAD
-
-const bcrypt = require('bcrypt');
-const { User, Customer, Dog } = require('../mongodb'); // Ensure correct import path for Dog model
-=======
 const bcrypt = require('bcrypt');
 const { User, Customer } = require('../mongodb');
->>>>>>> 8f90d3e8a241a764305db79c4bcdb84a70c8b8a6
 const jwt = require('jsonwebtoken');
 
 // Your secret key for signing and verifying JWT
 const secretKey = 'yourSecretKey';
 
 // Function to handle user registration
-<<<<<<< HEAD
-const registerUser = async (email, password, dogProfileData) => {
-=======
 const registerUser = async (email, password) => {
->>>>>>> 8f90d3e8a241a764305db79c4bcdb84a70c8b8a6
   try {
     console.log('Attempting to register user:', { email, password });
     // Check if the user already exists
@@ -36,12 +26,6 @@ const registerUser = async (email, password) => {
     // Create a customer with the new user's ID
     await Customer.create({ user: newUser._id });
 
-<<<<<<< HEAD
-    // Create dog profile for the user
-    await Dog.create({ owner: newUser._id, ...dogProfileData }); // Ensure correct usage of Dog model
-
-=======
->>>>>>> 8f90d3e8a241a764305db79c4bcdb84a70c8b8a6
     return { success: true, user: newUser };
   } catch (error) {
     console.error('Error registering user:', error);
@@ -49,26 +33,6 @@ const registerUser = async (email, password) => {
   }
 };
 
-<<<<<<< HEAD
-// Function to update dog profile
-const updateDogProfile = async (userId, dogProfileData) => {
-  try {
-    console.log('Attempting to update dog profile for user:', userId);
-    // Find the dog profile associated with the user
-    const updatedDogProfile = await Dog.findOneAndUpdate(
-      { owner: userId }, // Filter by owner ID
-      dogProfileData, // Update with request body
-      { new: true } // Return the updated document
-    );
-
-    if (!updatedDogProfile) {
-      return { success: false, message: 'Dog profile not found' };
-    }
-
-    return { success: true, message: 'Dog profile updated successfully' };
-  } catch (error) {
-    console.error('Error updating dog profile:', error);
-=======
 // Function to handle user login
 const loginUser = async (email, password) => {
   try {
@@ -94,7 +58,6 @@ const loginUser = async (email, password) => {
     return { success: true, user, token };
   } catch (error) {
     console.error('Error logging in user:', error);
->>>>>>> 8f90d3e8a241a764305db79c4bcdb84a70c8b8a6
     return { success: false, message: 'Internal Server Error' };
   }
 };
@@ -119,14 +82,7 @@ const checkAuth = async (req, res) => {
 
 module.exports = {
   registerUser,
-<<<<<<< HEAD
-  updateDogProfile,
-  checkAuth,
-  // ... other exported functions
-};
-=======
   loginUser,
   checkAuth,
   // ... other exported functions
 };
->>>>>>> 8f90d3e8a241a764305db79c4bcdb84a70c8b8a6
