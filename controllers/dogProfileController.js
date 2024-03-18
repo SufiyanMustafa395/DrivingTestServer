@@ -1,3 +1,5 @@
+// dogProfileController.js
+
 const Dog = require('../models/dog');
 
 const createDogProfile = async (req, res) => {
@@ -10,7 +12,8 @@ const createDogProfile = async (req, res) => {
       age,
       weight,
       aggressionStatus,
-      lastVisitDate,    });
+      lastVisitDate,
+    });
     res.status(201).json(newDogProfile);
   } catch (error) {
     console.error('Error creating dog profile:', error);
@@ -43,8 +46,23 @@ const deleteDogProfile = async (req, res) => {
   }
 };
 
+const fetchDogProfile = async (req, res) => {
+  try {
+    // Fetch dog profile associated with the current user
+    const dogProfile = await Dog.findOne({ owner: req.user._id });
+    if (!dogProfile) {
+      return res.status(404).json({ message: 'Dog profile not found' });
+    }
+    res.json(dogProfile);
+  } catch (error) {
+    console.error('Error fetching dog profile:', error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+};
+
 module.exports = {
   createDogProfile,
   updateDogProfile,
   deleteDogProfile,
+  fetchDogProfile,
 };

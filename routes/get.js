@@ -30,10 +30,10 @@ router.get('/services', async (req, res) => {
 });
 
 // Define route for dog profiles
-router.get('/dogprofile', async (req, res) => {
+router.get('/dogprofile', authMiddleware, async (req, res) => {
   try {
-    // Fetch dog profiles from the database
-    const dogs = await Dog.find();
+    // Fetch dog profiles for the authenticated user
+    const dogs = await Dog.find({ owner: req.user._id });
     res.json(dogs);
   } catch (error) {
     console.error('Error fetching dog profiles:', error);
