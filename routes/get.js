@@ -16,7 +16,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-// Define route for services
+// Define route 
 router.get('/services', async (req, res) => {
   try {
     // Fetch data for services (you can replace this with actual logic)
