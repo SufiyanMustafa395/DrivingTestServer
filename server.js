@@ -1,4 +1,3 @@
-//server.js
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
@@ -7,10 +6,11 @@ const routes = require('./routes/routes');
 const authRoutes = require('./routes/authRoutes');
 const passwordRoute = require('./routes/passwordRoute');
 
+
 const app = express();
 const port = 8080;
 
-// Enable CORS
+// Enable CORS for all routes
 app.use(cors());
 
 // Serve static files from the 'public' directory
@@ -27,6 +27,9 @@ app.use((req, res, next) => {
 
 // Connect to MongoDB Atlas
 connectToMongoDB();
+
+// Use the dog profile routes
+
 
 // Use the routes defined in routes.js
 app.use('/', routes);

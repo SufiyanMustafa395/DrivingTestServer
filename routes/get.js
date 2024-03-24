@@ -1,6 +1,5 @@
 const express = require('express');
-const router = express.Router();
-const { User, Customer, Service, Dog } = require('../mongodb');
+const router = express.Router();const { User, Customer, Service, Dog } = require('../mongodb');
 
 // Define route for the home page
 router.get('/', async (req, res) => {
@@ -38,6 +37,7 @@ router.get('/dogprofile', authMiddleware, async (req, res) => {
   } catch (error) {
     console.error('Error fetching dog profiles:', error);
     res.status(500).json({ msg: 'Internal Server Error' });
+on({ msg: 'Internal Server Error' });
   }
 });
 

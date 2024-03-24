@@ -16,7 +16,7 @@ const router = express.Router();
 router.use('/auth', authRoutes);
 router.use('/appointments', appointmentRoutes);
 router.use('/customers', customerRoutes);
-router.use('/dog-profile', dogProfileRoutes); 
+router.use('/dogprofile', dogProfileRoutes); 
 // Include the about route
 router.use('/about', aboutRoute);
 router.use('/services', servicesRoute); // Include the services route
