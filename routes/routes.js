@@ -9,12 +9,14 @@ const servicesRoute = require('./servicesRoute'); // Import the servicesRoute mo
 const contactsRoute = require('./contactsRoute'); // Import the contactsRoute module
 const homeRoute = require('./homeRoute'); // Import the homeRoute module
 const dogProfileRoutes = require('./dogProfileRoutes'); // Import the dogProfileRoutes module
+const feedbackRoutes = require('./feedbackRoutes'); // Import the dogProfileRoutes module
 const passwordRoute = require('./passwordRoute'); // Import the homeRoute module
 const router = express.Router();
 
 // Delegate specific functionalities to separate route files
 router.use('/auth', authRoutes);
 router.use('/appointments', appointmentRoutes);
+router.use('/feeback', feedbackRoutes);
 router.use('/customers', customerRoutes);
 router.use('/dogprofile', dogProfileRoutes); 
 // Include the about route

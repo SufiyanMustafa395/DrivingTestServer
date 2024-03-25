@@ -5,7 +5,7 @@ const { connectToMongoDB, closeMongoDBConnection } = require('./mongodb');
 const routes = require('./routes/routes');
 const authRoutes = require('./routes/authRoutes');
 const passwordRoute = require('./routes/passwordRoute');
-
+const feedbackRoutes = require('./routes/feedbackRoutes'); 
 
 const app = express();
 const port = 8080;
@@ -15,6 +15,7 @@ app.use(cors());
 
 // Serve static files from the 'public' directory
 app.use(express.static('public'));
+app.use('/feedback', feedbackRoutes);
 
 // Parse request bodies as JSON
 app.use(bodyParser.json());
@@ -33,7 +34,6 @@ connectToMongoDB();
 
 // Use the routes defined in routes.js
 app.use('/', routes);
-
 // Use the auth routes defined in authRoutes.js
 app.use('/auth', authRoutes);
 

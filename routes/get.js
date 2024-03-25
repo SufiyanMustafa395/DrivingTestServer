@@ -1,5 +1,5 @@
 const express = require('express');
-const router = express.Router();const { User, Customer, Service, Dog } = require('../mongodb');
+const router = express.Router();const { User, Customer, Service, Dog, Feedback } = require('../mongodb');
 
 // Define route for the home page
 router.get('/', async (req, res) => {
@@ -28,6 +28,17 @@ router.get('/services', async (req, res) => {
   }
 });
 
+
+router.get('/feedback', async (req, res) => {
+  try {
+    const feedbacks = await Feedback.find();
+    
+    res.send(`Feedback Page: ${JSON.stringify(feedbacks)}`);
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    res.status(500).send('Internal Server Error');
+  }
+});
 // Define route for dog profiles
 router.get('/dogprofile', authMiddleware, async (req, res) => {
   try {
@@ -40,6 +51,7 @@ router.get('/dogprofile', authMiddleware, async (req, res) => {
 on({ msg: 'Internal Server Error' });
   }
 });
+
 
 // Define route for contact information
 router.get('/contact', async (req, res) => {
