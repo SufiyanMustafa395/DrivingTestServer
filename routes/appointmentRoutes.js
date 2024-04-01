@@ -6,14 +6,10 @@ const router = express.Router();
 
 // Placeholder route for appointments
 
-router.get("/", bookingController.getAppointment);
-router.post("/", (req, res) => {
-  console.log("Received data:", req.body);
-
-  // Send a response back to the client
-  res.status(200).json({ msg: "Data received" });
-});
-
+router.get("/", bookingController.getAllAppointments);
+router.post("/", bookingController.createAppointment);
+router.delete("/:id", bookingController.deleteAppointment);
+router.put("/:id", bookingController.updateAppointment);
 // You can add more placeholder routes or middleware as needed
 
 module.exports = router;
