@@ -69,7 +69,11 @@ const deleteAppointment = async (req, res) => {
 
 const updateAppointment = async (req, res) => {
   try {
-    const appointment = await Appointment.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    const appointment = await Appointment.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true }
+    );
     if (!appointment) {
       return res.status(404).send("Appointment not found");
     }
@@ -80,10 +84,26 @@ const updateAppointment = async (req, res) => {
   }
 };
 
+const getAppointmentsByCustomer = async (req, res) => {
+  try {
+    const appointments = await Appointment.find({
+      customer: req.params.id,
+    });
+    if (!appointments) {
+      return res.status(404).send("No appointments found for this customer");
+    }
+    res.status(200).json(appointments);
+  } catch (error) {
+    console.error("Error fetching appointments:", error);
+    res.status(500).send("Internal Server Error");
+  }
+};
+
 module.exports = {
   getAppointment,
   createAppointment,
   getAllAppointments,
   deleteAppointment,
   updateAppointment,
+  getAppointmentsByCustomer,
 };

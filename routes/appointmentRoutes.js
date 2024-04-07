@@ -7,6 +7,7 @@ const router = express.Router();
 // Placeholder route for appointments
 
 router.get("/", bookingController.getAllAppointments);
+router.get("/:id", bookingController.getAppointmentsByCustomer);
 router.post("/", bookingController.createAppointment);
 router.delete("/:id", bookingController.deleteAppointment);
 router.put("/:id", bookingController.updateAppointment);
