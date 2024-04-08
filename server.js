@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const { connectToMongoDB, closeMongoDBConnection } = require('./mongodb');
+const { connectToMongoDB, closeMongoDBConnection } = require('./mongoDB');
 const routes = require('./routes/routes');
 const authRoutes = require('./routes/authRoutes');
 const passwordRoute = require('./routes/passwordRoute');
