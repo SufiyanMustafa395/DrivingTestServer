@@ -82,5 +82,21 @@ router.delete('/:id', async (req, res) => {
   }
 });
 
+// GET a specific service by ID
+router.get('/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const service = await Service.findById(id);
+    if (!service) {
+      return res.status(404).json({ error: 'Service not found' });
+    }
+    res.status(200).json(service);
+  } catch (error) {
+    console.error('Error fetching service by ID:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+
 
 module.exports = router;
