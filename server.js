@@ -1,14 +1,19 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const { connectToMongoDB, closeMongoDBConnection } = require('./mongodb');
+const { connectToMongoDB, closeMongoDBConnection } = require('./mongoDB');
 const routes = require('./routes/routes');
 const authRoutes = require('./routes/authRoutes');
 const passwordRoute = require('./routes/passwordRoute');
 const feedbackRoutes = require('./routes/feedbackRoutes'); 
+const mongodb = require('mongodb');
+
 
 const app = express();
-const port = 8080;
+const port = process.env.PORT || 8080; // Use environment variable or default to 8080
+
+
+
 
 // Enable CORS for all routes
 app.use(cors());

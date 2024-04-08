@@ -4,7 +4,6 @@ const express = require("express");
 const Customer = require("../models/customer");
 const customerController = require("../controllers/customerController");
 const authMiddleware = require("../middleware/authMiddleware");
-
 const router = express.Router();
 
 // Protect the routes using authentication middleware
