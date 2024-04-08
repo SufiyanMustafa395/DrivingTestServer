@@ -8,7 +8,10 @@ const passwordRoute = require('./routes/passwordRoute');
 const feedbackRoutes = require('./routes/feedbackRoutes'); 
 
 const app = express();
-const port = 8080;
+const port = process.env.PORT || 8080; // Use environment variable or default to 8080
+
+
+
 
 // Enable CORS for all routes
 app.use(cors());
