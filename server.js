@@ -10,7 +10,7 @@ const feedbackRoutes = require('./routes/feedbackRoutes');
 
 
 const app = express();
-const port = process.env.PORT || 8080; // Use environment variable or default to 8080
+const port = process.env.PORT /* || 8080*/; // Use environment variable or default to 8080
 
 
 
