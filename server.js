@@ -12,6 +12,7 @@ require('dotenv').config();
 
 
 const app = express();
+console.log("PORT:", process.env.PORT);
 const port = process.env.PORT /* || 8080*/; // Use environment variable or default to 8080
 
 
