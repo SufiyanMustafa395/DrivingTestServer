@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const Feedback = require('../models/feedback');
 
-// Middleware to parse JSON bodies
 router.use(express.json());
 
 // GET all feedback entries
