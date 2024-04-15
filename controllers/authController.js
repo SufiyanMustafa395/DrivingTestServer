@@ -1,5 +1,5 @@
 const bcrypt = require('bcrypt');
-const { User } = require('../mongodb'); // Ensure correct import path for User model
+const { User } = require('../mongo'); // Ensure correct import path for User model
 const jwt = require('jsonwebtoken');
 
 // Your secret key for signing and verifying JWT

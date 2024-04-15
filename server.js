@@ -1,16 +1,19 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const { connectToMongoDB, closeMongoDBConnection } = require('./mongoDB');
+const { connectToMongoDB, closeMongoDBConnection } = require('./mongo');
 const routes = require('./routes/routes');
 const authRoutes = require('./routes/authRoutes');
 const passwordRoute = require('./routes/passwordRoute');
 const feedbackRoutes = require('./routes/feedbackRoutes'); 
-const mongodb = require('mongodb');
+require('dotenv').config();
+
+//const mongodb = require('mongodb');
 
 
 const app = express();
-const port = process.env.PORT || 8080; // Use environment variable or default to 8080
+//console.log("PORT:", process.env.PORT);
+const port = process.env.PORT || 3000; // Use environment variable or default to 8080
 
 
 

@@ -4,4 +4,6 @@ to start server:
 - npm install
 - npm start or npm run dev
   
-http://localhost:8080/
+https://prj-666-front.vercel.app/  - link for frontend
+
+https://prj-666-server.vercel.app/ - link for server
