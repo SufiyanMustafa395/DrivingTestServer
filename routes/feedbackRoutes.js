@@ -57,7 +57,7 @@ router.put('/:id', async (req, res) => {
   }
 });
 
-// DELETE delete an existing feedback entry
+// DELETE delete an existing feedback entr
 router.delete('/:id', async (req, res) => {
   try {
     const { id } = req.params;
